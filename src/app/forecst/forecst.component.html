@@ -1,0 +1,99 @@
+<div class="container-fluid p-3  bg-dark text-white">
+    <h2 class="text-center">The Weather App</h2>
+</div>
+
+<div class="container-fluid bg-secondary text-secondary">
+    <div class="row justify-content-center">
+        <p>Today's Weather</p>
+        <div class="card" style="width:18rem">
+            <div class="card-body">
+                <h4 class="card-title"><strong>{{Cdata.location.name}}</strong></h4>
+                <h6 class="card-text">Date & Time: {{Cdata.location.localtime}}</h6>
+                <h6 class="card-text">Temperature: {{Cdata.current.temp_c}}</h6>
+                <h6 class="card-text">Humidity: {{Cdata.current.humidity}}</h6>
+                <h6 class="card-text">Feels Like: {{Cdata.current.feelslike_c}}</h6>
+                <h6 class="card-text">Weather: {{Cdata.current.condition.text}}</h6>
+            </div>
+        <img class="card-img-bottom" src="{{Cdata.current.condition.icon}}" alt="Card image" style="width:100%">
+        
+        </div>
+    </div>
+
+</div>
+    
+
+<div class="container-fluid bg-secondary text-white">
+    
+        <div>
+            <label>Select City</label>
+            <select #selcity>
+                <option value="" disabled>Choose a city</option>
+                <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+                
+            </select>
+            <button type="submit" class="my-3 p-3btn btn-info"  (click)="getCity(selcity.value)">Submit</button>
+            
+            <label>Add City:</label>
+            <input #addcity type="text" id="addcity">
+            <button type="button" class="my-3 p-3btn btn-success" (click)="addCity(addcity.value)">ADD</button>
+
+            <label>Delete City</label>
+            <select #delcity id="delcity">
+                <option value="" disabled>Choose a city</option>
+                <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+            </select>
+            <button type="submit" class="my-3 p-3btn btn-danger"  (click)="delCity(delcity.value)">Delete</button>
+        </div>
+
+    
+        
+  
+</div>
+
+<div class="container-fluid  p-3  bg-dark text-secondary">
+    <h4 style="color:white;text-align:center;">Predictions</h4>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card" style="width:18rem">
+                <div class="card-body">
+                   
+                    <h6 class="card-text">Date & Time: {{Cdata.forecast.forecastday[0].localtime}}</h6>
+                    <h6 class="card-text">Temperature: {{Cdata.forecast.forecastday[0].temp_c}}</h6>
+                    <h6 class="card-text">Humidity: {{Cdata.forecast.forecastday[0].humidity}}</h6>
+                    <h6 class="card-text">Feels Like: {{Cdata.forecast.forecastday[0].feelslike_c}}</h6>
+                    <h6 class="card-text">Weather: {{Cdata.forecast.forecastday[0].condition.text}}</h6>
+                </div>
+            <img class="card-img-bottom" src="{{Cdata.forecast.forecastday[0].condition.icon}}" alt="Card image" style="width:100%, height:30%">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" style="width:18rem">
+                <div class="card-body">
+                    
+                    <h6 class="card-text">Date & Time: {{Cdata.forecast.forecastday[1].localtime}}</h6>
+                    <h6 class="card-text">Temperature: {{Cdata.forecast.forecastday[1].temp_c}}</h6>
+                    <h6 class="card-text">Humidity: {{Cdata.forecast.forecastday[1].humidity}}</h6>
+                    <h6 class="card-text">Feels Like: {{Cdata.forecast.forecastday[1].feelslike_c}}</h6>
+                    <h6 class="card-text">Weather: {{Cdata.forecast.forecastday[].condition.text}}</h6>
+                </div>
+            <img class="card-img-bottom" src="{{Cdata.forecast.forecastday[1].condition.icon}}" alt="Card image" style="width:100%, height:30%">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" style="width:18rem">
+                <div class="card-body">
+                   
+                    <h6 class="card-text">Date & Time: {{Cdata.forecast.forecastday[2].localtime}}</h6>
+                    <h6 class="card-text">Temperature: {{Cdata.forecast.forecastday[2].temp_c}}</h6>
+                    <h6 class="card-text">Humidity: {{Cdata.forecast.forecastday[2].humidity}}</h6>
+                    <h6 class="card-text">Feels Like: {{Cdata.forecast.forecastday[2].feelslike_c}}</h6>
+                    <h6 class="card-text">Weather: {{Cdata.forecast.forecastday[2].condition.text}}</h6>
+                </div>
+            <img class="card-img-bottom" src="{{Cdata.forecast.forecastday[2].condition.icon}}" alt="Card image" style="width:100%, height:30%">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

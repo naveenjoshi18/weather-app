@@ -1,0 +1,93 @@
+<div class="container-fluid p-3  bg-dark text-white">
+    <h2 class="text-center">The Weather App</h2>
+</div>
+
+<div class="container-fluid bg-secondary text-secondary">
+    <div class="row justify-content-center">
+        <p>Today's Weather</p>
+        <div class="card" style="width:18rem">
+            <div class="card-body">
+                <h3 class="card-title">{{Cdata.request.query}}</h3>
+                <h5 class="card-text">Temperature: {{Cdata.current.temperature}}</h5>
+                <h6 class="card-text">Humidity: {{Cdata.current.humidity}}</h6>
+                <h6 class="card-text">Feels Like: {{Cdata.current.feelslike}}</h6>
+                <h6 class="card-text">Weather: {{Cdata.current.weather_descriptions}}</h6>
+            </div>
+        <img class="card-img-bottom" src="{{Cdata.current.weather_icons}}" alt="Card image" style="width:100%, height:30%">
+        </div>
+    </div>
+
+</div>
+    
+
+<div>
+    
+    <div class="form-group">
+        <label>Select City</label>
+        <select #scity>
+            <option value="" disabled>Choose a state</option>
+            <option *ngFor="let city of cities">{{city}}</option>
+        </select>
+    
+        <button type="submit" class="my-3 btn btn-info" (click)="getCity(scity.value)">Submit</button>
+    
+
+    </div>
+        
+    <label>Add City:</label>
+    <input #addcity type="text">
+    <button type="button" class="btn btn-success" (click)="addCity(addcity.value)">ADD</button>
+</div>
+
+
+
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { ForecastService } from '../forecast.service';
+import {FormControl} from "@angular/forms"
+import { Cities } from '../cities';
+import { FormBuilder, Validators } from "@angular/forms";
+
+
+@Component({
+  selector:'app-forecst',
+  templateUrl:  './forecst.component.html',
+  styleUrls: ['./forecst.component.css']
+})
+export class ForecstComponent implements OnInit {
+
+  public Cdata=[] as any;
+  cities=["Bangalore","Hospet","New York","San Fransisco"];
+  
+  selected:FormControl= new FormControl()
+  
+  constructor(private ForecastService:ForecastService,public fb: FormBuilder) { }
+
+  getCity(selected:any){
+  let selectedcity=selected
+  console.log(typeof(selectedcity))
+
+  this.ForecastService.getweather(selectedcity)
+  .subscribe(data => this.Cdata=data);
+}
+
+
+addCity(value:any){
+  if( value!=""){
+    this.cities.push(value);
+    console.log(this.cities)
+  }else{
+    alert("Add a City!!")
+  }
+  
+}
+
+  ngOnInit() {
+    
+  }
+
+}
