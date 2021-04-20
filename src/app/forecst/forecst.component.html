@@ -25,16 +25,19 @@
 <div class="container-fluid bg-secondary text-white">
     
         <div>
-            <label>Select City</label>
-            <select #selcity>
-                <option value="" disabled>Choose a city</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Pune">Pune</option>
-                <option value="New York">New York</option>
-                <option value="san francisco">San Fransisco</option>
-                
+            <form>
+                <label>Select City</label>
+                 <select #selcity>
+                    <option value="" disabled>Choose a city</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Pune">Pune</option>
+                    <option value="New York">New York</option>
+                    <option value="san francisco">San Fransisco</option>
             </select>
+            
             <button type="submit" class="my-3 p-3btn btn-info"  (click)="getCity(selcity.value)">Submit</button>
+            
+           
             
             <label>Add City:</label>
             <input #addcity type="text" id="addcity">
@@ -42,13 +45,11 @@
 
             <label>Delete City</label>
             <select #delcity id="delcity">
-                 <option value="" disabled>Choose a city</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Pune">Pune</option>
-                <option value="New York">New York</option>
-                <option value="san francisco">San Fransisco</option>
+                <option value="" disabled>Choose a city</option>
+                <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
             </select>
             <button type="submit" class="my-3 p-3btn btn-danger"  (click)="delCity(delcity.value)">Delete</button>
+          </form>
         </div>
 
     
