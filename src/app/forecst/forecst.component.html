@@ -42,8 +42,11 @@
 
             <label>Delete City</label>
             <select #delcity id="delcity">
-                <option value="" disabled>Choose a city</option>
-                <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+                 <option value="" disabled>Choose a city</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Pune">Pune</option>
+                <option value="New York">New York</option>
+                <option value="san francisco">San Fransisco</option>
             </select>
             <button type="submit" class="my-3 p-3btn btn-danger"  (click)="delCity(delcity.value)">Delete</button>
         </div>
